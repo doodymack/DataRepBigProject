@@ -51,7 +51,6 @@ https://doodymack.pythonanywhere.com/results.html
 5. http://127.0.0.1:5000/results.html  will return the updated tally from the local server
 
 ![image](https://user-images.githubusercontent.com/77808597/210068890-93a8b99b-1d71-4af5-b8ab-f31f098b48f0.png)
-mysql> show databases;
 
 
 As the pythonanywhere hosted 'voting' app did not utilise all the CRUD funvtionality demonstrated in the courseshow databases, I created another webpage<br>
