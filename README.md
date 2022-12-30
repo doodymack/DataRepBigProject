@@ -50,7 +50,7 @@ https://doodymack.pythonanywhere.com/results.html
 4. http://127.0.0.1:5000/vote.html will return the vote page for Series 1
 5. http://127.0.0.1:5000/results.html  will return the updated tally from the local server
 
-
+![image](https://user-images.githubusercontent.com/77808597/210068890-93a8b99b-1d71-4af5-b8ab-f31f098b48f0.png)
 mysql> show databases;
 +--------------------+
 | Database           |
