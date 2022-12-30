@@ -52,47 +52,7 @@ https://doodymack.pythonanywhere.com/results.html
 
 ![image](https://user-images.githubusercontent.com/77808597/210068890-93a8b99b-1d71-4af5-b8ab-f31f098b48f0.png)
 mysql> show databases;
-+--------------------+
-| Database           |
-+--------------------+
-| information_schema |
-| datarep            |
-| datarepresentation |
-| mysql              |
-| performance_schema |
-| project            |
-| sys                |
-| test               |
-+--------------------+
-8 rows in set (0.00 sec)
 
-mysql> use project;
-Database changed
-mysql> show tables;
-+-------------------+
-| Tables_in_project |
-+-------------------+
-| episodevote       |
-| vote              |
-+-------------------+
-2 rows in set (0.00 sec)
-
-mysql> select * from episodevote;
-+----+---------------------------------------------+-----------+
-| id | episode                                     | ipaddress |
-+----+---------------------------------------------+-----------+
-|  1 | S1E1: PILOT                                 | 127.0.0.1 |
-|  2 | S1E2: Lawnmower Dog                         | 127.0.0.1 |
-|  3 | S1E1: PILOT                                 | 127.0.0.1 |
-|  4 | S1E3: Anatomy Park                          | 127.0.0.1 |
-|  5 | S1E4: M. Night Shaym-Aliens                 | 127.0.0.1 |
-|  6 | S1E10: Close Rick-counters of the Rick Kind | 127.0.0.1 |
-|  7 | S1E8: Rixty Business                        | 127.0.0.1 |
-|  8 | S1E1: PILOT                                 | 127.0.0.1 |
-+----+---------------------------------------------+-----------+
-8 rows in set (0.00 sec)
-
-mysql>
 
 As the pythonanywhere hosted 'voting' app did not utilise all the CRUD funvtionality demonstrated in the courseshow databases, I created another webpage<br>
 that runs on LOCAL server.  This was based on bookviewer structure.  This allows the user to<br>
@@ -110,41 +70,6 @@ This could be modified before being hosted to allow people input their vote for 
 5. http://127.0.0.1:5000/results.html  will return the updated tally from local server (see below)
 
 ![image](https://user-images.githubusercontent.com/77808597/210069000-7d6669fd-9209-48ba-872d-0c8ebb32c38c.png)
-
-mysql> use datarepresentation;
-Database changed
-mysql> show tables;
-+------------------------------+
-| Tables_in_datarepresentation |
-+------------------------------+
-| book                         |
-| rickandmorty                 |
-| student                      |
-+------------------------------+
-3 rows in set (0.00 sec)
-
-mysql> select * from rickandmorty;
-+----+--------+---------+--------+
-| id | series | episode | rating |
-+----+--------+---------+--------+
-|  1 | 4      | 2       |      3 |
-|  2 | 5      | 3       |      5 |
-+----+--------+---------+--------+
-2 rows in set (0.02 sec)
-
-Test 'CREATE' button on webpage:
-
-mysql> select * from rickandmorty;
-+----+--------+---------+--------+
-| id | series | episode | rating |
-+----+--------+---------+--------+
-|  1 | 4      | 2       |      3 |
-|  2 | 5      | 3       |      5 |
-|  3 | 4      | 2       |      3 |
-+----+--------+---------+--------+
-3 rows in set (0.00 sec)
-
-mysql>
 
 
 
