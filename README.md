@@ -109,7 +109,7 @@ This could be modified before being hosted to allow people input their vote for 
 4. http://127.0.0.1:5000/randmviewer.html will return the ranking page with CRUD functionality
 5. http://127.0.0.1:5000/results.html  will return the updated tally from local server (see below)
 
-
+![image](https://user-images.githubusercontent.com/77808597/210069000-7d6669fd-9209-48ba-872d-0c8ebb32c38c.png)
 
 mysql> use datarepresentation;
 Database changed
