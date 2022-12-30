@@ -53,7 +53,7 @@ https://doodymack.pythonanywhere.com/results.html
 ![image](https://user-images.githubusercontent.com/77808597/210068890-93a8b99b-1d71-4af5-b8ab-f31f098b48f0.png)
 
 
-As the pythonanywhere hosted 'voting' app did not utilise all the CRUD funvtionality demonstrated in the course, I created another webpage
+As the pythonanywhere hosted 'voting' app did not utilise all the CRUD functionality demonstrated in the course, I created another webpage
 that runs on LOCAL server. <br> This was based on bookviewer structure.  This allows the user to
 manually enter a series name (number), episode name (number) and give it a rating. <br>
 This could be modified before being hosted to allow people input their vote for their favourite episode. <br>
