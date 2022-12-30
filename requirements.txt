@@ -7,6 +7,6 @@ MarkupSafe==1.1.1
 six==1.13.0
 Werkzeug==0.16.0
 
-
-
-
+Python==3.17
+Web Browser
+MySQL Server (if not opened in pythonanywhere)
