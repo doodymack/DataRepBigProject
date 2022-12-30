@@ -36,7 +36,7 @@ There are two 'webpages' 1. randm which is hosted  2. RAM-CRUD which is run loca
 A website was created on the style of the voting app presented in the course. <br>
 The website returns a list of Rick&Morty season 1 episodes along with titles. <br>
 There is a hyperlink to a synopses page (fandom) for a reminder of each episode synopses. <br>
-The votes are tallied in the MySQL server setup in pythonanywhere account and pushef to the results page. <br>
+The votes are tallied in the MySQL server setup in pythonanywhere account and pushed to the results page. <br>
 
 https://doodymack.pythonanywhere.com/vote.html
 
@@ -53,7 +53,7 @@ https://doodymack.pythonanywhere.com/results.html
 ![image](https://user-images.githubusercontent.com/77808597/210068890-93a8b99b-1d71-4af5-b8ab-f31f098b48f0.png)
 
 
-As the pythonanywhere hosted 'voting' app did not utilise all the CRUD funvtionality demonstrated in the courseshow databases, I created another webpage<br>
+As the pythonanywhere hosted 'voting' app did not utilise all the CRUD funvtionality demonstrated in the course, I created another webpage<br>
 that runs on LOCAL server.  This was based on bookviewer structure.  This allows the user to<br>
 manually enter a series name (number), episode name (number) and give it a rating. <br>
 This could be modified before being hosted to allow people input their vote for their favourite episode. <br>
