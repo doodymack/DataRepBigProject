@@ -10,7 +10,7 @@ by Paul Mc Grath
 
 ## Introduction
 
-In approaching this project the aim was to build on the course material and demonstrate API/FLASK/CRUD/DAO/Server functionality knowledge <br> 
+In approaching this project the aim was to build on the course material and demonstrate API/FLASK/CRUD/DAO/Server functionality knowledge 
 and to how these can be combined to create something useful. <br>
 NB: The decision to use a 'Rick & Morty' theme was NOT based on any bias of potential tutor interest! <br>
 In looking for a topic I was guided by creating something that my teenage son who is a R&M fan would connect with <br>
