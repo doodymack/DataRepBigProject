@@ -7,6 +7,12 @@ MarkupSafe==1.1.1
 six==1.13.0
 Werkzeug==0.16.0
 
+Python== 3.17
+
+Webbrowser (Edge, Chrome)
+
+MySQLServer (WAMP or equivalent)
+
 
 
 

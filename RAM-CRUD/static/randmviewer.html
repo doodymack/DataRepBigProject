@@ -1,0 +1,248 @@
+<!-- python server 1# bookViewer.html-->
+
+<!--modified from:  https://github.com/andrewbeattycourseware/datarepresentation/blob/main/code/Topic09x-server1linktoDB.py/bookviewer.html-->
+
+<html>
+    <head>
+        <series> Data Representation: Big Project</series>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+       
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+    <body style="background-color:rgb(115, 241, 93);">
+        <h1 style="color:rgb(11, 126, 227); font-size:40pt;">Rick & Morty Episodes Ranking</h1>
+        <img src="/images/RickAndMorty.png" alt="HTML5 Icon" style="width:128px;height:128px;">
+        <div> <button id="showCreateButton" type="button" class="btn btn-primary" onclick="showCreate()">Create</button></div>
+        
+        <div>
+            <table class="table" id="bookTable">
+                <tr style="color:rgb(11, 126, 227); font-size:14pt;">
+                        <th>id</th>
+                        <th>Series</th>
+                        <th>
+                            Episode
+                        </th>
+                        <th>Rating</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                </tr>
+                
+            </table>
+        </div>
+        <div id='createUpdateForm' style="display: none">
+                <h2><span id="createLabel">Rate an</span> <span id="updateLabel">Update</span> Episode</h2>
+                <input type="hidden" name="id"/>
+                Series <input type="text" name="series" /><br/>
+                Episode <input type="text" name="episode"/> <br/>
+                Rating <input type="number" name="rating"/> <br/>
+                <span><button id="doCreateButton" type="button" class="btn btn-primary" onclick="doCreate()">Create</button></span>
+                <span><button id="doUpdateButton" type="button" class="btn btn-primary" onclick="doUpdate()">Update</button></span>
+        </div>
+    </body>
+    <script>
+    function showCreate(){
+        document.getElementById('showCreateButton').style.display="none"
+        document.getElementById('bookTable').style.display="none"
+        document.getElementById('createUpdateForm').style.display="block"
+
+        document.getElementById('createLabel').style.display="inline"
+        document.getElementById('updateLabel').style.display="none"
+
+        document.getElementById('doCreateButton').style.display="block"
+        document.getElementById('doUpdateButton').style.display="none"
+
+    }
+    function showViewAll(){
+        document.getElementById('showCreateButton').style.display="block"
+        document.getElementById('bookTable').style.display="block"
+        document.getElementById('createUpdateForm').style.display="none"
+    }
+    function showUpdate(buttonElement){
+        document.getElementById('showCreateButton').style.display="none"
+        document.getElementById('bookTable').style.display="none"
+        document.getElementById('createUpdateForm').style.display="block"
+
+        document.getElementById('createLabel').style.display="none"
+        document.getElementById('updateLabel').style.display="inline"
+
+        document.getElementById('doCreateButton').style.display="none"
+        document.getElementById('doUpdateButton').style.display="block"
+
+
+        var rowElement = buttonElement.parentNode.parentNode
+        // these is a way of finding the closest <tr> which would safer, closest()
+        
+        var book = getBookFromRow(rowElement)
+        populateFormWithBook(book)
+    }
+    function doCreate(){
+        var form = document.getElementById('createUpdateForm')
+
+        var book = {}
+       
+        book.series = form.querySelector('input[name="series"]').value
+        book.episode = form.querySelector('input[name="episode"]').value
+        book.rating = form.querySelector('input[name="rating"]').value
+        console.log(JSON.stringify(book))
+        createBookAjax(book)
+        
+        
+    }
+    function doUpdate(){
+        var book = getBookFromForm();
+        var rowElement = document.getElementById(book.id);
+        updateBookAjax(book);
+        setBookInRow(rowElement,book);
+       
+        clearForm();
+        showViewAll();
+    }
+    function doDelete(r){
+        var tableElement = document.getElementById('bookTable');
+        var rowElement = r.parentNode.parentNode;
+        var index = rowElement.rowIndex;
+        deleteBookAjax(rowElement.getAttribute("id"));
+        tableElement.deleteRow(index);
+    }
+    function addBookToTable(book){
+        var tableElement = document.getElementById('bookTable')
+        var rowElement = tableElement.insertRow(-1)
+        rowElement.setAttribute('id',book.id)
+        var cell1 = rowElement.insertCell(0);
+        cell1.innerHTML = book.id
+        var cell2 = rowElement.insertCell(1);
+        cell2.innerHTML = book.series
+        var cell3 = rowElement.insertCell(2);
+        cell3.innerHTML = book.episode
+        var cell4 = rowElement.insertCell(3);
+        cell4.innerHTML = book.rating
+        var cell5 = rowElement.insertCell(4);
+        cell5.innerHTML = '<button type="button" class="btn btn-primary" onclick="showUpdate(this)">Update</button>'
+        var cell6 = rowElement.insertCell(5);
+        cell6.innerHTML = '<button type="button" class="btn btn-primary" onclick=doDelete(this)>delete</button>'
+
+    }
+
+    function clearForm(){
+        var form = document.getElementById('createUpdateForm')
+
+        form.querySelector('input[name="series"]').value=''
+        form.querySelector('input[name="episode"]').value=''
+        form.querySelector('input[name="rating"]').value=''
+    }
+    function getBookFromRow(rowElement){
+        var car ={}
+        book.id  = rowElement.getAttribute('id')
+        book.series = rowElement.cells[1].firstChild.textContent
+        book.episode = rowElement.cells[2].firstChild.textContent
+        book.rating = parseInt(rowElement.cells[3].firstChild.textContent,10)
+        return book
+    }
+    function setBookInRow(rowElement, book){
+        rowElement.cells[0].firstChild.textContent= book.id  
+        rowElement.cells[1].firstChild.textContent= book.series 
+        rowElement.cells[2].firstChild.textContent= book.episode
+        rowElement.cells[3].firstChild.textContent= book.rating
+    }
+    function populateFormWithBook(book){
+        var form = document.getElementById('createUpdateForm')
+        form.querySelector('input[name="id"]').disabled = true
+
+        form.querySelector('input[name="id"]').value  = book.id
+        form.querySelector('input[name="series"]').value= book.series
+        form.querySelector('input[name="episode"]').value= book.episode
+        form.querySelector('input[name="rating"]').value= book.rating
+        return book
+    }
+    function getBookFromForm(){
+        var form = document.getElementById('createUpdateForm')
+        var book = {}
+        book.id = form.querySelector('input[name="id"]').value
+        book.series = form.querySelector('input[name="series"]').value
+        book.episode = form.querySelector('input[name="episode"]').value
+        book.rating = parseInt(form.querySelector('input[name="rating"]').value,10)
+        console.log(JSON.stringify(book))
+        return book
+    }
+    function getAllAjax(){
+        $.ajax({
+            "url": "http://127.0.0.1:5000/books",
+            "method":"GET",
+            "data":"",
+            "dataType": "JSON",
+            "success":function(result){
+                //console.log(result);
+                for (book of result){
+                    addBookToTable(book);
+                }
+                
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+
+    }
+    function createBookAjax(book){
+        //var car = {"reg":"12 D 1234","make":"Fiat","model":"Punto","rating":3000}
+        console.log(JSON.stringify(book));
+        $.ajax({
+            "url": "http://127.0.0.1:5000/books",
+            "method":"POST",
+            "data":JSON.stringify(book),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                //console.log(result);
+                book.id = result.id
+                addBookToTable(book)
+                clearForm()
+                showViewAll()
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    function updateBookAjax(book){
+        //var car = {"reg":"12 D 1234","rating":8000}
+        console.log(JSON.stringify(book));
+        $.ajax({
+            "url": "http://127.0.0.1:5000/books/"+encodeURI(book.id),
+            "method":"PUT",
+            "data":JSON.stringify(book),
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+               // console.log(result);
+                  
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    function deleteBookAjax(id){
+        
+        //console.log(JSON.stringify('deleting '+id));
+        $.ajax({
+            "url": "http://127.0.0.1:5000/books/"+encodeURI(id),
+            "method":"DELETE",
+            "data":"",
+            "dataType": "JSON",
+            contentType: "application/json; charset=utf-8",
+            "success":function(result){
+                //console.log(result);
+                  
+            },
+            "error":function(xhr,status,error){
+                console.log("error: "+status+" msg:"+error);
+            }
+        });
+    }
+    getAllAjax();
+  
+
+    
+    </script>
+</html>
